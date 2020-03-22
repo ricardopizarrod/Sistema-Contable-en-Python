@@ -37,4 +37,9 @@ class Monedero():
 	miFrame.config(bd=15)
 	miFrame.config(relief="groove")
 
+	imagenMonedero=PhotoImage(file="imagenes/Monedero.png")
+	Label(miFrame, image=imagenMonedero, bg="#1f1f1f").place(x=95, y=70)
+	imagenFondo=PhotoImage(file="imagenes/Fondo.png")
+	Label(miFrame, image=imagenFondo, bg="#1f1f1f").place(x=0, y=250)
+
 	root.mainLoop()
