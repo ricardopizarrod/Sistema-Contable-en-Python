@@ -30,4 +30,11 @@ class Monedero():
 	barraMenu.add_cascade(label="Contabilidad", menu=contabilidadMenu)
 	barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)	
 
+	miFrame=Frame(root)
+	miFrame.pack(fill="both", expand="True")
+	miFrame.config(bg="#1f1f1f")
+	miFrame.config(width="1280", height="676")
+	miFrame.config(bd=15)
+	miFrame.config(relief="groove")
+
 	root.mainLoop()
