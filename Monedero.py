@@ -8,13 +8,28 @@ root.title("Monedero - Sistema Contable")
 root.geometry("+0+0")
 
 class Monedero():
+
+	def salirApp():
+		valor=messagebox.askokcancel("¡Atencion!, ¿Estás seguro que deseas salir?")
+		if valor==True:
+			root.destroy()
+
+	def infoLicencia():
+		messagebox.showwarning("Licencia", "Licencia Activada")
+
+	def infoAcercaDe():
+		messagebox.showinfo("Monedero", "Creado por: \nRicardo Pizarro \nCopyright ©℗®™ 2020")
+
+	def InvoVersion():
+		messagebox.showinfo("Version", "Version: 1.0.0 - Build: C0B010")
+
 	barraMenu=Menu(root)
 	root.config(menu=barraMenu, width=300, height=300)
 
 	archivoMenu=Menu(barraMenu, tearoff=0)
 	archivoMenu.add_command(label="Crear BBDD")
 	archivoMenu.add_separator()
-	archivoMenu.add_command(label="Salir")
+	archivoMenu.add_command(label="Salir", command=salirApp)
 
 	contabilidadMenu=Menu(barraMenu, tearoff=0)
 	contabilidadMenu.add_command(label="Deudas")
@@ -23,10 +38,10 @@ class Monedero():
 	contabilidadMenu.add_command(label="Banco")
 
 	ayudaMenu=Menu(barraMenu, tearoff=0)
-	ayudaMenu.add_command(label="Licencia")
-	ayudaMenu.add_command(label="Version")
+	ayudaMenu.add_command(label="Licencia", command=infoLicencia)
+	ayudaMenu.add_command(label="Version", command=InvoVersion)
 	ayudaMenu.add_command(label="Novedades")
-	ayudaMenu.add_command(label="Acerca de...")
+	ayudaMenu.add_command(label="Acerca de...", command=infoAcercaDe)
 
 	barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
 	barraMenu.add_cascade(label="Contabilidad", menu=contabilidadMenu)
@@ -70,7 +85,7 @@ class Monedero():
 		labelClave.grid(row=1, column=0, sticky="w", padx=10, pady=10)
 		cuadroClave=Entry(miFrameLogin2, show="*", textvariable=miCuadroClave)
 		cuadroClave.grid(row=1, column=1, padx=10, pady=10)
-		botonEntrar=Button(miFrameLogin2, text="Entrar", width=10, height=1, borderwidth=1, highlightbackground="#1F1F1F")
+		botonEntrar=Button(miFrameLogin2, text="Entrar", width=10, height=1, borderwidth=1, highlightbackground="#1F1F1F", command=verificar)
 		botonEntrar.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
 
 		cuadroClave.bind('<Return>', lambda x: verificar())
@@ -91,5 +106,5 @@ class Monedero():
 	Label(miFrame, image=imagenFondo, bg="#1f1f1f").place(x=0, y=250)
 
 	root.withdraw()
-	login(Monedero)
+	login()
 	root.mainLoop()
