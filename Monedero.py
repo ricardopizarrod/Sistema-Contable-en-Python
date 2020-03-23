@@ -23,6 +23,37 @@ class Monedero():
 	def InvoVersion():
 		messagebox.showinfo("Version", "Version: 1.0.0 - Build: C0B010")
 
+	def infoNovedades():
+		miFrameNovedades=Toplevel()
+		miFrameNovedades.title("Monedero - Sistema Contable - Novedades")
+		#miFrameNovedades.iconbitmap(imagenes/wallet.ico)
+		miFrameNovedades.geometry("+420+250")
+		miFrameNovedades.config(bg="#1F1F1F")
+		miFrameNovedades2=Frame(miFrameNovedades)
+		miFrameNovedades2.pack(fill="both", expand="True")
+		miFrameNovedades2.config(bg="#1F1F1F")
+		miFrameNovedades2.config(width="1200", height="600")
+		miFrameNovedades2.config(bd=15)
+		miFrameNovedades2.config(relief="groove")
+
+		tituloLabel=Label(miFrameNovedades2, text="NOVEDADES", bg="#1F1F1F", fg="#03f943")
+		tituloLabel.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+		cuadroNovedades=Text(miFrameNovedades2, width=60, height=15, bg="#1F1F1F", fg="#FFFFFF")
+		cuadroNovedades.grid(row=1, column=0)
+		scrollVertical=Scrollbar(miFrameNovedades2, command=cuadroNovedades.yview)
+		scrollVertical.grid(row=1, column=1, sticky="nsew")
+
+		cuadroNovedades.insert(INSERT, "\
+			Version: 1.0.0\
+			\n* Aqui la priemra novedad\
+			\n* \
+			\n* \
+			\n* \
+			\n* ")
+		cuadroNovedades.config(yscrollcommand=scrollVertical.set, state="disable")
+
+
+
 	barraMenu=Menu(root)
 	root.config(menu=barraMenu, width=300, height=300)
 
@@ -40,7 +71,7 @@ class Monedero():
 	ayudaMenu=Menu(barraMenu, tearoff=0)
 	ayudaMenu.add_command(label="Licencia", command=infoLicencia)
 	ayudaMenu.add_command(label="Version", command=InvoVersion)
-	ayudaMenu.add_command(label="Novedades")
+	ayudaMenu.add_command(label="Novedades", command=infoNovedades)
 	ayudaMenu.add_command(label="Acerca de...", command=infoAcercaDe)
 
 	barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
